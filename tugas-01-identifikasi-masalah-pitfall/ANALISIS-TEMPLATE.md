@@ -13,11 +13,13 @@
 
 **Kenapa ini keliru:** karena terjadi pemblokiran eksekusi kode(thread blocking) yang bisa menjadikan aplikasi berjalan lebih lambat dari biasanya
 
-**Dampak ke FoodGo:** jika kode sinkronuous pembeli akan menunggu loading lebih lama dihalaman aplikasi atau aplikasi akan tidak merespon nputan dari pengguna
+**Dampak ke FoodGo:** jika kode sinkronous pembeli akan menunggu loading lebih lama dihalaman aplikasi atau aplikasi akan tidak merespon inputan dari pengguna
 
-**Solusi desain awal:**  1. Menggunakan sistem cache(penyimpanan sementara) : jadi data yang sering di akses di device pengguna akan di simpan kedalam RAM, sehingga untuk waktu tunggu proses sinkronous lebih cepat
+**Solusi desain awal:**  
+1. Menggunakan sistem cache(penyimpanan sementara) : jadi data yang sering di akses di device pengguna akan di simpan kedalam RAM, sehingga untuk waktu tunggu proses sinkronous lebih cepat
 
-**Trade-off:** 1. Terkadang data tidak otomatis memperbarui(berisikan data lama) dan konsumsi ruang penyimpanannya lebih banyak
+**Trade-off:** 
+1. Terkadang data tidak otomatis memperbarui(berisikan data lama) dan konsumsi ruang penyimpanannya lebih banyak
 
 ---
 
