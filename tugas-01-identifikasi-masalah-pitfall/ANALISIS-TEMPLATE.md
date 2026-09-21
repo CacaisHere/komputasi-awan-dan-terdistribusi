@@ -6,7 +6,7 @@
 |---|---|---|
 | [Julia] | [nim] | [pitfall/bagian yang dikerjakan] |
 | [Clarrisa] | [nim] | [pitfall/bagian yang dikerjakan] |
-| [nama 3] | [nim] | [pitfall/bagian yang dikerjakan] |
+| [pooe 3] | [nim] | [pitfall/bagian yang dikerjakan] |
 
 ## Pitfall 1: [nama pitfall] — ditulis oleh [nama]
 
