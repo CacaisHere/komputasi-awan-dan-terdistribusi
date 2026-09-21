@@ -4,11 +4,24 @@
 
 | Nama | NIM | Kontribusi |
 |---|---|---|
-| [Julia] | [nim] | [pitfall/bagian yang dikerjakan] |
-| [Clarrisa] | [nim] | [pitfall/bagian yang dikerjakan] |
-| [pooe 3] | [nim] | [pitfall/bagian yang dikerjakan] |
+| [Julia Fidaus Azzahra] | [103072400056] | [pitfall/bagian yang dikerjakan] |
+| [Clarrisa Aurelia Putri Andini] | [103072400139] | [pitfall 1] |
 
-## Pitfall 1: [nama pitfall] — ditulis oleh [nama]
+## Pitfall 1: [synchronous] — ditulis oleh [Clarrisa Aurelia Putri Andini]
+
+**Bukti di skenario:** Aplikasi jadi sangat lambat beberapa permintaan timeout karena lonjakan pesanan
+
+**Kenapa ini keliru:** karena terjadi pemblokiran eksekusi kode(thread blocking) yang bisa menjadikan aplikasi berjalan lebih lambat dari biasanya
+
+**Dampak ke FoodGo:** jika kode sinkronuous pembeli akan menunggu loading lebih lama dihalaman aplikasi atau aplikasi akan tidak merespon nputan dari pengguna
+
+**Solusi desain awal:**  1. Menggunakan sistem cache(penyimpanan sementara) : jadi data yang sering di akses di device pengguna akan di simpan kedalam RAM, sehingga untuk waktu tunggu proses sinkronous lebih cepat
+
+**Trade-off:** 1. Terkadang data tidak otomatis memperbarui(berisikan data lama) dan konsumsi ruang penyimpanannya lebih banyak
+
+---
+
+## Pitfall 2: [nama pitfall] — ditulis oleh [nama]
 
 **Bukti di skenario:** [kutip/paraphrase bagian skenario]
 
@@ -19,13 +32,6 @@
 **Solusi desain awal:** [usulan solusi]
 
 **Trade-off:** [apa yang dikorbankan/risiko dari solusi ini]
-
----
-
-## Pitfall 2: [nama pitfall] — ditulis oleh [nama]
-
-(ulangi struktur di atas)
-
 ---
 
 ## Pitfall 3: [nama pitfall] — ditulis oleh [nama]

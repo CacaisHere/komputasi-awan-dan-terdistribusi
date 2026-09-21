@@ -2,10 +2,10 @@
 
 > Isi jurnal ini selama proses diskusi berlangsung, bukan ditulis ulang rapi di akhir. Tulis dengan gaya bebas — poin diskusi, kebuntuan, perubahan pikiran.
 
-## [Tanggal diskusi 1]
+## [21 September 2026]
 - Peserta: [Julia, Clarrisa]
-- Poin diskusi: ...
-- Perbedaan pendapat (jika ada): ...
+- Poin diskusi: menentukan pitfall dan menentukan alasannya
+- Perbedaan pendapat (jika ada): -
 
 ## [Tanggal diskusi 2]
 - ...
@@ -19,4 +19,4 @@
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 21/09/2026 | chatgpt | Apa saja solusi dari syncronous pitfall | synchronous pitfall bisa diatasi dengan asynchronous communication, timeout, retry, message queue, caching, circuit breaker, dan parallel processing. | |
