@@ -4,7 +4,7 @@
 
 | Nama | NIM | Kontribusi |
 |---|---|---|
-| [Julia Fidaus Azzahra] | [103072400056] | [pitfall/bagian yang dikerjakan] |
+| [Julia Fidaus Azzahra] | [103072400056] | [pitfall 2] |
 | [Clarrisa Aurelia Putri Andini] | [103072400139] | [pitfall 1] |
 
 ## Pitfall 1: [synchronous] — ditulis oleh [Clarrisa Aurelia Putri Andini]
@@ -23,17 +23,17 @@
 
 ---
 
-## Pitfall 2: [nama pitfall] — ditulis oleh [nama]
+## Pitfall 2: [latency is zero] — ditulis oleh [Julia Firdaus Azzahra]
 
-**Bukti di skenario:** [kutip/paraphrase bagian skenario]
+**Bukti di skenario:** Tidak ada timeout sama sekali pada pemanggilan antar service.
 
-**Kenapa ini keliru:** [penjelasan]
+**Kenapa ini keliru:** Karena seharusnya komunikasi antar service pasti memiliki latency. Ada proses yang harus dilewati seperti pengiriman data, pemrosesan di server, dan pengiriman respon. Pada soal dijelaskan bahwa modul pesanan memanggil modul pembayaran dan menunggu tanpa batas waktu, padahal sangat tidak mungkin untuk sebuah sistem tidak memiliki latency. Pasti akan selalu membutuhkan waktu dan bisa saja mengalami keterlambatan.
 
-**Dampak ke FoodGo:** [mekanisme kegagalan konkret]
+**Dampak ke FoodGo:** Pada saat banyak request masuk ke server disaat bersamaan, server harus menangani banyak proses yang masih menunggu proses pembayaran yang mengakibatkan beban server meningkat sehingga aplikasi akan menjadi lambat dan dapat mengalami crash.
 
-**Solusi desain awal:** [usulan solusi]
+**Solusi desain awal:** Memberikan timeout pada komunikasi antar service agar tidak menunggu tanpa batas waktu.
 
-**Trade-off:** [apa yang dikorbankan/risiko dari solusi ini]
+**Trade-off:** Timeout yang singkat mungkin akan menyebabkan request dianggap gagal padahal sebenarnya service tujuan masih memprosesnya.
 ---
 
 ## Pitfall 3: [nama pitfall] — ditulis oleh [nama]
