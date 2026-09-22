@@ -11,7 +11,7 @@
 
 **Bukti di skenario:** Aplikasi jadi sangat lambat beberapa permintaan timeout karena lonjakan pesanan
 
-**Kenapa ini keliru:** karena terjadi pemblokiran eksekusi kode(thread blocking) yang bisa menjadikan aplikasi berjalan lebih lambat dari biasanya
+**Kenapa ini keliru:** karena terjadi pemblokiran eksekusi kode(thread blocking) di server jadi prosesnya tertahan samapai 1 proses itu selesai baru bisa melayani permintaan selanjutnta, yang bisa menjadikan aplikasi berjalan lebih lambat dari biasanya
 
 **Dampak ke FoodGo:** jika kode sinkronous pembeli akan menunggu loading lebih lama dihalaman aplikasi atau aplikasi akan tidak merespon inputan dari pengguna
 
@@ -34,14 +34,23 @@
 **Solusi desain awal:** Memberikan timeout pada komunikasi antar service agar tidak menunggu tanpa batas waktu.
 
 **Trade-off:** Timeout yang singkat mungkin akan menyebabkan request dianggap gagal padahal sebenarnya service tujuan masih memprosesnya.
+
 ---
 
-## Pitfall 3: [nama pitfall] — ditulis oleh [nama]
+## Pitfall 3: [single point of failure] — ditulis oleh [Clarrisa Aurelia Putri A & Julia Firdaus Azzahra]
 
-(ulangi struktur di atas)
+**Bukti di skenario:** Saat trafik naik, satu server yang menangani semua modul (pesanan, pembayaran, notifikasi kurir) kewalahan karena semuanya berjalan di satu proses monolitik yang sama.
+
+**Kenapa ini keliru:** Pada modul tertera bahwa semuanya berjalan di satu server yang sama,jadi saat fitur pesanan sedang membludak atau banyak pemesan maka dia akan menyedot RAM dan CPU akan kehabisan tenaga. Sehingga fitur seperti pembayaran dan notifikassi akan berhenti atau crash
+
+**Dampak ke FoodGo:** 
+1. Jika modul ada yang error, maka fitur lainnya akan mati dan tidak bisa digunakan sama sekali
+
+**Solusi desain awal:**
+
+**Trade-off:** 
 
 ---
 
 ## Kesimpulan Kelompok
-
-[Ringkasan: jika FoodGo memperbaiki ketiga pitfall ini, apa arsitektur yang disarankan secara garis besar? Kaitkan dengan Tugas 2.]
+Arsitektur yang akan dipakai adalah service decoupling (microservis) karena aplikasi foodGo akan dipecah menjadi beberapa layanan yang berjalan pada server terpisah.
