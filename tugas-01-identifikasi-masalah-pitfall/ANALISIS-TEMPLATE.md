@@ -11,7 +11,7 @@
 
 **Bukti di skenario:** Aplikasi jadi sangat lambat beberapa permintaan timeout karena lonjakan pesanan
 
-**Kenapa ini keliru:** karena terjadi pemblokiran eksekusi kode(thread blocking) di server jadi prosesnya tertahan samapai 1 proses itu selesai baru bisa melayani permintaan selanjutnta, yang bisa menjadikan aplikasi berjalan lebih lambat dari biasanya
+**Kenapa ini keliru:** karena terjadi pemblokiran eksekusi kode(thread blocking) di server jadi prosesnya tertahan samapai 1 proses itu selesai baru bisa melayani permintaan selanjutnya, yang bisa menjadikan aplikasi berjalan lebih lambat dari biasanya
 
 **Dampak ke FoodGo:** jika kode sinkronous pembeli akan menunggu loading lebih lama dihalaman aplikasi atau aplikasi akan tidak merespon inputan dari pengguna
 
@@ -46,9 +46,9 @@
 **Dampak ke FoodGo:** 
 1. Jika modul ada yang error, maka fitur lainnya akan mati dan tidak bisa digunakan sama sekali
 
-**Solusi desain awal:**
+**Solusi desain awal:** Memecah atau memisahkan berdasarkan fungsinya menjadi beberapa service agar beban tidak ditangani oleh satu server saja. 
 
-**Trade-off:** 
+**Trade-off:** Sistem menjadi lebih kompleks. Semakin banyak hal yang harus dipantau, dikelola, atau diperbaiki ketika terjadi masalah.
 
 ---
 
