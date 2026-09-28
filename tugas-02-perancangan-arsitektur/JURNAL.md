@@ -2,7 +2,7 @@
 
 ## [28 September 2026]
 - Opsi arsitektur yang dipertimbangkan: SOA + Pub-Sub
-- Kenapa akhirnya pilih [SOA/Pub-Sub]: ...
+- Kenapa akhirnya pilih [SOA/Pub-Sub]: Kami sepakat menggunakan kombinasi SOA + Pub-Sub. SOA untuk memisahkan menjadi beberapa service sesuai fungsinya. Sehingga, setiap service akan memiliki tugas masing-masing. Pub-Sub digunakan sebagai komunikasi untuk mengurangi ketergantungan. Jadi komunikasi antar service dilakukan melalui message broker, sehingga service tidak perlu terhubung secara langsung. Service cukup mengirim informasi ke message broker lalu pesan akan disebarkan kepada service yang berlangganan.
 - Revisi diagram (versi 1 → versi 2, apa yang berubah dan kenapa): ...
 
 ```mermaid
