@@ -16,7 +16,7 @@ graph LR
   BrokerM -->|subscribe| NotifSvc[Service Notifikasi Kurir]
 
 ```
-Pada diagram pertama alur setelah pemaabayaran masi belum sempurna karena setelah melakukan pembayaran belum menunjukkan proses penugasan kurir mengantar makanan
+Pada diagram pertama alur setelah pembayaran masih belum sempurna karena setelah melakukan pembayaran belum menunjukkan proses penugasan kurir mengantar makanan
 
 
 ### Revisi 2
@@ -33,11 +33,13 @@ graph LR
   ServiceKurir -->|Penugasan Kurir| Kurir[Kurir]
 
 ```
-Pada diagram kedua proses dimulai saat pelanggan melihat menu/katalog dengan mengirimkan HTTp request ke service katalog, lalu katalog akan memberikan data-data menu ke pelanggan. Komunikasi ini bersifat sinkron dengan menggunakan request-respons karna pelanggan menunggu respons dari service katalog dulu. Setelah itu, pelanggan membuat pesasan menggunakan HTTP request di service pesasan. Kemudian pada service pesanan melakukan publish event OrderCreated ke Message broker. Komunikasi pesanan dari Message broker ini bersifat asinkron dan menggunakan event.
+Pada diagram kedua proses dimulai saat pelanggan melihat menu/katalog dengan mengirimkan HTTp request ke service katalog, lalu katalog akan memberikan data-data menu ke pelanggan. Komunikasi ini bersifat sinkron dengan menggunakan request-respons karna pelanggan menunggu respons dari service katalog dulu. Setelah itu, pelanggan membuat pesasan menggunakan HTTP request di service pesanan. Kemudian pada service pesanan melakukan publish event OrderCreated ke Message broker. Komunikasi pesanan dari Message broker ini bersifat asinkron dan menggunakan event.
 
-Service pembayaran melakukan subscribe di event OrderCreated dari Massage broker. Setelah itu service pembayaran memproses pembayaran. Jika berhasil service pembayaran melakukan publish PaymentSucces ke massage broker. Komunikasi ini bersifat asinkron.
+Service pembayaran melakukan subscribe di event OrderCreated dari Message broker. Setelah itu service pembayaran memproses pembayaran. Jika berhasil service pembayaran melakukan publish PaymentSucces ke massage broker. Komunikasi ini bersifat asinkron.
 
-Lalu pada revisis 2 ini menambahkan service kurir sebagai komponen terpisah dan mengubah notifikasi jadi service notifikasi resto. Setelah event paymentSucces , kemudian di subscribe oleh notifikasi resto dan service kurir secara terpisah. Jadu restonya dapat menerima notifikasi pesanan dan kurir dapat diproses untuk diberi penugasan tanpa service notifikasinya terhubung langsung dengan kurir.
+Lalu pada revisis 2 ini menambahkan service kurir sebagai komponen terpisah dan mengubah notifikasi jadi service notifikasi resto. Setelah event paymentSucces , kemudian di subscribe oleh notifikasi resto dan service kurir secara terpisah. Jadi restonya dapat menerima notifikasi pesanan dan kurir dapat diproses untuk diberi penugasan tanpa service notifikasinya terhubung langsung dengan kurir.
+
+Trade-off : Pada Pub-Sub pesan mungkin bisa saja tidak sampai pada server tujuan, dikarenakan mungkin terjadi keterlambatan atau error sehingga diperlukan mekanisme penyimpanan pesan yang gagal diterima atau terlambat dan pengiriman ulang pesan yang akan membuat sistem jauh lebih kompleks.
 
 ## Log Penggunaan AI (Level 2)
 
@@ -45,4 +47,4 @@ Lalu pada revisis 2 ini menambahkan service kurir sebagai komponen terpisah dan 
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 29/09/2026 | ChatGpt | Kalau Pub-Sub mengurangi ketergantungan antar-service, apakah sistem berarti menjadi lebih sederhana | Ketergantungan bisa berkurang tapi memuncul kompleksitas baru | menjadikan pengurangan ketergantungan sebagai keuntungan dan kompleksitas pengelolaan pesan sebagai trade-off |
