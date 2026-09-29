@@ -47,4 +47,4 @@ Trade-off : Pada Pub-Sub pesan mungkin bisa saja tidak sampai pada server tujuan
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| 29/09/2026 | ChatGpt | Kalau Pub-Sub mengurangi ketergantungan antar-service, apakah sistem berarti menjadi lebih sederhana | Ketergantungan bisa berkurang tapi memuncul kompleksitas baru | menjadikan pengurangan ketergantungan sebagai keuntungan dan kompleksitas pengelolaan pesan sebagai trade-off |
+| 29/09/2026 | ChatGpt | Kalau Pub-Sub mengurangi ketergantungan antar-service, apakah sistem berarti menjadi lebih sederhana | Ketergantungan bisa berkurang tetapi akan memunculkan kompleksitas baru | menjadikan pengurangan ketergantungan sebagai keuntungan dan kompleksitas pengelolaan pesan sebagai trade-off |
