@@ -1,8 +1,9 @@
 # Jurnal Proses — Tugas 3
 
 ## Percobaan tanpa Lock
-- Hasil `processed_count` yang didapat: ...
-- Kenapa bisa meleset (jelaskan mekanisme race condition dengan kata sendiri): ...
+- Hasil `processed_count` yang didapat: 42
+- Kenapa bisa meleset (jelaskan mekanisme race condition dengan kata sendiri): Soalnya thread menguabah dan mengakses processed_count dengan bersamaan. Jadi 2 thread membaca nilai count yang sama sebelum salah satun nilainya diperbarui. Habis itu keduanya melakukan increment 1 dan menyimpan hasil yang sama, sehingga salah satu dari penambahan itu tidak tercatar dan jumlah processed_count jadi lebih kecil dari jumlah pesanan yang asli yaitu 100
+![percobaan non lock](bukti/OutputPogramTanpaLock.png)
 
 ## Percobaan dengan Lock
 - Hasil `processed_count` setelah perbaikan: ...
