@@ -7,7 +7,7 @@
 
 ## Percobaan dengan Lock
 - Hasil `processed_count` setelah perbaikan: 100
-- Perbaikan yang dilakukan: Untuk mengatasi masalah pada percobaan sebelumnya, ditambahkan `threading.Lock()` untuk mengatur akses thread terhadap `processed_count`. Dengan adanya `Lock`, thread harus bergantian ketika mengakses dan mengubah nilai `processed_count`. Jadi, pada saat satu thread sedang menambahkan nilai `processed_count`, thread yang lain harus menunggu sampai prosesnya selesai agar tidak terjadi penambahan yang tertimpa ataupun terlewat oleh thread yang lain. Hasil yang didapat setelah menggunakan `Lock` `sesuai dengan jumlah pesanan yang harus diproses yang berarti race condition di percobaan sebelumnya berhasil diperbaiki.
+- Perbaikan yang dilakukan: Untuk mengatasi masalah pada percobaan sebelumnya, ditambahkan `threading.Lock()` untuk mengatur akses thread terhadap `processed_count`. Dengan adanya `Lock`, thread harus bergantian ketika mengakses dan mengubah nilai `processed_count`. Jadi, pada saat satu thread sedang menambahkan nilai `processed_count`, thread yang lain harus menunggu sampai prosesnya selesai agar tidak terjadi penambahan yang tertimpa ataupun terlewat oleh thread yang lain. Hasil yang didapat setelah menggunakan `Lock` sesuai dengan jumlah pesanan yang harus diproses yang berarti race condition di percobaan sebelumnya sudah berhasil diperbaiki.
 
 ![percobaan dengan lock](bukti/OutputProgramDenganLock.png)
 
