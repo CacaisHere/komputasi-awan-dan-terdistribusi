@@ -33,7 +33,10 @@ def process_order(order_id: int) -> None:
     # Langkah 2: bungkus increment dengan `with lock:` dan buktikan hasilnya
     #            selalu tepat NUM_ORDERS. Simpan bukti kedua kondisi ini
     #            di JURNAL.md / folder bukti/.
-    pass
+    current = processed_count
+    time.sleep(0.001)
+    processed_count = current + 1
+        
 
 
 def worker(order_ids: list) -> None:
@@ -50,6 +53,25 @@ def main() -> None:
     # start semua thread, lalu join semua thread sebelum lanjut.
     threads = []
     # ... isi logika pembagian tugas & pembuatan thread di sini ...
+
+    chunk_size = len(order_ids) // NUM_WORKERS
+
+    for i in range(NUM_WORKERS):
+        start = i * chunk_size
+
+        if i == NUM_WORKERS - 1:
+            end = len(order_ids)
+        else:
+            end = start + chunk_size
+
+        thread = threading.Thread(
+            target=worker,
+            args=(order_ids[start:end],)
+        )
+
+        threads.append(thread)
+        thread.start()
+
 
     for t in threads:
         t.join()
