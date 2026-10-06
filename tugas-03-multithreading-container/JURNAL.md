@@ -11,6 +11,10 @@
 
 ![percobaan dengan lock](bukti/OutputProgramDenganLock.png)
 
+## Setelah memakai docker
+![docker](bukti/dockerhasil.png)
+Docker digunakan untuk menjalankan program foodGo dalam container. Terlihat pada gambar diatas bahwa program sudah dikemas menggunakan dokcer dan untuk hasilnya masi sesuai yaitu 100 pesanan berhasil diproses
+
 ## Kendala Docker
 - virtualization not detected, cara mengatasinya dengan mengaktifkan fitur windows hyper-v dan instal wsl, lalu di restart
 
@@ -20,4 +24,4 @@
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 05-10-2026 | ChatGPT | apa fungsi docker pada simulasi pesanan ini | Memberikan ide bahwa Docker digunakan untuk menjalankan program dalam container dengan environment yang terisolasi dan konsisten. | kelompok kami menggunakan jawaban tersebut untuk membuat penjelasan docker di jurnal.md |
