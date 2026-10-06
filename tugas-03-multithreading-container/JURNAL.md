@@ -12,7 +12,7 @@
 ![percobaan dengan lock](bukti/OutputProgramDenganLock.png)
 
 ## Kendala Docker
-- Error yang ditemui saat `docker build`/`docker run` dan cara memperbaikinya: ...
+- virtualization not detected, cara mengatasinya dengan mengaktifkan fitur windows hyper-v dan instal wsl, lalu di restart
 
 ## Log Penggunaan AI (Level 2)
 
