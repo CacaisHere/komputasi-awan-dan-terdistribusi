@@ -18,6 +18,9 @@ Docker digunakan untuk menjalankan program foodGo dalam container. Terlihat pada
 ## Kendala Docker
 - virtualization not detected, cara mengatasinya dengan mengaktifkan fitur windows hyper-v dan instal wsl, lalu di restart
 
+## Analisis mengapa threading
+Dibandingkan dengan membuat proses baru untuk setiap client, thread lebih ringan karena masih di dalam satu proses dan bisa berbagi resource dan penggunaan resource server jadi lebih hemat. Karena thread bisa akses data yang sama secara bersamaan, maka kami menggunakan lock untuk mengatasi masalah race condition yang terjadi karena hal tersebut.
+
 ## Log Penggunaan AI (Level 2)
 
 > Wajib diisi sesuai kebijakan Level 2 di [`../RUBRIK-UMUM.md`](../RUBRIK-UMUM.md). Tulis "Tidak memakai AI" pada baris pertama jika memang tidak dipakai. Hanya untuk brainstorming ide/outline — bukan untuk kode/analisis/teks akhir.
