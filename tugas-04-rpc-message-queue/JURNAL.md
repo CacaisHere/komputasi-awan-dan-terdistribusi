@@ -8,7 +8,7 @@
 
 ## Uji "pesan tidak hilang" (khusus Jalur B)
 - Langkah uji: matikan consumer → jalankan publisher → nyalakan consumer
-- Hasil yang diamati: ...
+- Hasil yang diamati: Saat consumer.py dimatikan, publisher.py berhasil mengirimkan tiga pesan setiap kali dijalankan. Saat consumer.py udah dinyalakan lagi pesan-pesannya diterima dan diproses yang menunjukkan kalau pesan tersimpan sementara di antrean meskipun consumer tidak aktif, lalu diproses kembali saat consumer dijalankan lagi.
 
 ## Log Penggunaan AI (Level 2)
 
