@@ -7,6 +7,12 @@
 - Error saat setup (mis. koneksi RabbitMQ ditolak, port bentrok): ...
 
 ## Uji "pesan tidak hilang" (khusus Jalur B)
+### Bukti 1
+![bukti 1](bukti/bukti1.png)
+Gambar diatas merupakan percobaan pertama untuk consumer.py dan publisher.py terlihat bahwa hasil dari keduanya sudah sesuai
+
+### Bukti 2
+![bukti 2](bukti/bukti2.png)
 - Langkah uji: matikan consumer → jalankan publisher → nyalakan consumer
 - Hasil yang diamati: Saat consumer.py dimatikan, publisher.py berhasil mengirimkan tiga pesan setiap kali dijalankan. Saat consumer.py udah dinyalakan lagi pesan-pesannya diterima dan diproses yang menunjukkan kalau pesan tersimpan sementara di antrean meskipun consumer tidak aktif, lalu diproses kembali saat consumer dijalankan lagi.
 
