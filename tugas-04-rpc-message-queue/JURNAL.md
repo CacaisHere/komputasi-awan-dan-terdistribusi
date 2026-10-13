@@ -22,4 +22,4 @@ Gambar diatas merupakan percobaan pertama untuk consumer.py dan publisher.py ter
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 11-10-2026 | chatGpt | perbedaan RPC dan Message Queue serta alasan pemilihan MQ pada studi kasus FoodGo. | MQ cocok untuk mengirim pesan secara asinkron tanpa harus menunggu respons consumer. Pesan dapat menunggu di antrean RabbitMQ ketika consumer tidak aktif. RPC adalah metode komunikasi ketika pengirim mengirim permintaan dan harus menunggu respons dari penerima. Sementara itu, Message Queue (MQ) adalah metode komunikasi ketika pengirim mengirim pesan ke antrean untuk diproses penerima tanpa harus menunggu respons. Jadi, perbedaan utamanya adalah RPC bersifat sinkron (menunggu respons), sedangkan MQ bersifat asinkron (tidak harus menunggu respons). | Karena penjelasan tersebut akhirnya kami memutuskan untuk memilih metofe MQ pada tugas kali ini |
