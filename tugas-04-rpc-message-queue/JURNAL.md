@@ -1,7 +1,7 @@
 # Jurnal Proses — Tugas 4
 
 ## Jalur yang dipilih
-- [RPC / MQ / keduanya], alasan: ...
+- [RPC / MQ / keduanya], alasan: Message Queue (MQ) dengan RabbitMQ, karena lebih cocok digunakan. Jadi, modul pembayaran bisa mengirim informasi pembayaran berhasil tanpa harus menunggu respon dari modul kurir atau notifikasi. Kalau misal modul kurir sedang bermasalah maka pesan akan tetap menunggu di antrean dan akan diproses saat modul aktif lagi. Sehingga pengiriman informasi pembayaran tidak akan terhambat hanya karena modul kurirnya bermasalah. Kalau pakai RPC modul pembayaran harus menunggu respon dulu dari modul kurir yang nanti pasti akan membuat proses jadi lebih lambat kalau ada masalah. Oleh karena itu, kami memilih MQ dan tidak memilih RPC.
 
 ## Kendala teknis
 - Error saat setup (mis. koneksi RabbitMQ ditolak, port bentrok): ...
