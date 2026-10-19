@@ -1,3 +1,4 @@
+
 """
 Tugas 5 - Simulasi Node untuk Bully Algorithm
 
@@ -26,6 +27,7 @@ class Node:
         self.peers = peers
         self.leader_id = None
         self.lock = threading.Lock()
+        self.ok_received = False
 
     # ---------- Infrastruktur jaringan (SUDAH LENGKAP, jangan diubah) ----------
 
@@ -60,41 +62,135 @@ class Node:
 
     def on_message(self, sender_id: int, msg_type: str):
         """Dipanggil setiap kali node ini menerima pesan dari node lain."""
-        # TODO 1: tangani tiga jenis pesan berikut:
-        #   - "ELECTION": node lain memulai election. Jika node_id kita LEBIH BESAR
-        #     dari sender_id, balas dengan mengirim "OK" ke sender, lalu mulai
-        #     election kita sendiri (start_election()) karena kita berpotensi jadi leader.
-        #   - "OK": tandai bahwa ada node lebih tinggi yang masih hidup, sehingga
-        #     kita TIDAK boleh mendeklarasikan diri sebagai leader.
-        #   - "COORDINATOR": simpan sender_id sebagai leader_id yang baru.
-        print(f"[Node {self.node_id}] Menerima pesan '{msg_type}' dari node {sender_id} (TODO: proses ini)")
+
+        print(
+            f"[Node {self.node_id}] Menerima pesan "
+            f"'{msg_type}' dari node {sender_id}"
+        )
+
+        if msg_type == "ELECTION":
+            if self.node_id > sender_id:
+                # Balas OK kepada node yang ID-nya lebih rendah.
+                sender_port = self.peers.get(sender_id)
+
+                if sender_port is not None:
+                    self.send_message(sender_port, "OK")
+
+                # Mulai election sendiri.
+                threading.Thread(
+                    target=self.start_election,
+                    daemon=True
+                ).start()
+
+        elif msg_type == "OK":
+            # Tandai bahwa node dengan ID lebih tinggi masih aktif.
+            if sender_id > self.node_id:
+                self.ok_received = True
+
+        elif msg_type == "COORDINATOR":
+            with self.lock:
+                self.leader_id = sender_id
+
+            print(f"[Node {self.node_id}] " f"Leader saat ini: Node {sender_id}")
+
+        elif msg_type == "PING":
+            # Koneksi TCP yang berhasil menandakan node aktif.
+            pass
 
     def start_election(self):
-        """Dipanggil saat node ini mendeteksi leader tidak ada / tidak merespons."""
-        # TODO 2: kirim "ELECTION" ke SEMUA peer dengan id LEBIH BESAR dari node_id kita.
-        # Tunggu ELECTION_TIMEOUT detik untuk balasan "OK" (gunakan flag/event yang
-        # diset di on_message saat menerima "OK").
-        # Jika TIDAK ADA balasan "OK" dalam waktu tersebut -> panggil declare_leader().
-        higher_peers = {pid: p for pid, p in self.peers.items() if pid > self.node_id}
-        print(f"[Node {self.node_id}] TODO: mulai election ke peer lebih tinggi: {higher_peers}")
+        """Dipanggil saat node mendeteksi leader tidak ada."""
+
+        higher_peers = {
+            pid: port
+            for pid, port in self.peers.items()
+            if pid > self.node_id
+        }
+
+        print(
+            f"[Node {self.node_id}] Memulai election ke node "
+            f"{list(higher_peers.keys())}"
+        )
+
+        self.ok_received = False
+
+        # Kirim ELECTION ke semua peer dengan ID lebih tinggi.
+        for peer_id, peer_port in higher_peers.items():
+            success = self.send_message(peer_port, "ELECTION")
+
+            if not success:
+                print(
+                    f"[Node {self.node_id}] "
+                    f"Node {peer_id} tidak merespons."
+                )
+
+        # Tunggu balasan OK sampai timeout.
+        start_time = time.time()
+
+        while time.time() - start_time < ELECTION_TIMEOUT:
+            if self.ok_received:
+                print(f"[Node {self.node_id}] Menerima OK," "menunggu COORDINATOR.")
+                return
+
+            time.sleep(0.05)
+
+        # Tidak ada peer dengan ID lebih tinggi yang merespons.
+        if not self.ok_received:
+            self.declare_leader()
 
     def declare_leader(self):
-        """Node ini menyatakan dirinya leader dan memberi tahu semua node lain."""
-        # TODO 3: set self.leader_id = self.node_id, lalu kirim "COORDINATOR"
-        # ke SEMUA peer (bukan cuma yang lebih tinggi).
+        """Node menyatakan dirinya leader dan memberi tahu semua node lain."""
+
         with self.lock:
             self.leader_id = self.node_id
-        print(f"[Node {self.node_id}] TODO: broadcast COORDINATOR, saya jadi leader")
+
+        print(f"[Node {self.node_id}] " 
+            "MENJADI LEADER! Broadcast COORDINATOR.")
+
+        # Kirim COORDINATOR ke semua peer.
+        for peer_id, peer_port in self.peers.items():
+            success = self.send_message(
+                peer_port, "COORDINATOR"
+            )
+
+            if success:
+                print(
+                    f"[Node {self.node_id}] "
+                    f"COORDINATOR dikirim ke Node {peer_id}"
+                )
 
     def monitor_leader(self):
-        """Loop periodik: cek apakah leader masih hidup, trigger election jika mati."""
+        """Memantau leader dan memulai election jika leader mati."""
+
         while True:
             time.sleep(3)
-            # TODO 4: jika self.leader_id sudah diketahui, coba ping node tsb
-            # (mis. kirim pesan "PING" atau cukup coba connect). Jika gagal
-            # (leader mati) dan node ini belum tahu leader baru, panggil
-            # start_election().
-            pass
+            with self.lock:
+                current_leader = self.leader_id
+            # Jika leader belum diketahui atau node ini adalah leader,
+            # tidak perlu melakukan pemeriksaan.
+            if (
+                current_leader is None
+                or current_leader == self.node_id
+            ):
+                continue
+            leader_port = self.peers.get(current_leader)
+            if leader_port is None:
+                continue
+            # Periksa apakah leader masih bisa dihubungi.
+            alive = self.send_message(leader_port, "PING")
+            if not alive:
+                print(
+                    f"[Node {self.node_id}] "
+                    f"Leader Node {current_leader} mati!"
+                )
+                with self.lock:
+                    if self.leader_id == current_leader:
+                        self.leader_id = None
+                        leader_lost = True
+                    else:
+                        leader_lost = False
+
+                if leader_lost:
+                    self.start_election()
 
 
 def main():
@@ -102,7 +198,7 @@ def main():
     parser.add_argument("--id", type=int, required=True)
     parser.add_argument("--port", type=int, required=True)
     parser.add_argument("--peers", type=str, required=True,
-                         help="daftar port peer dipisah koma, mis. 5002,5003,5004,5005")
+                        help="daftar port peer dipisah koma, mis. 5002,5003,5004,5005")
     args = parser.parse_args()
 
     # Asumsi konvensi port: id N selalu di port 5000+N (lihat contoh perintah di README).
