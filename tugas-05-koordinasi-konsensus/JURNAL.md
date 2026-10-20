@@ -1,7 +1,7 @@
 # Jurnal Proses — Tugas 5
 
 ## Implementasi Bully
-- Kendala saat mengisi TODO 1-4: ...
+- Kendala saat mengisi TODO 1-4: Kendala yang kami alami saat mengimplementasikan Bully Algorithm adalah kesalahan indentasi dan struktur kode. Beberapa methodnya tidak berada di dalam class dengan benar(ditaruh di luar claass), sehingga program mengalami error `AttributeError` karena method `monitor_leader()` tidak dikenali. Selain itu, terdapat atribut pendukung yang belum didefinisikan dengan benar karna kami lumayan kesulitan dalam mengerjakannya. Kendala tersebut kami atasi dengan memperbaiki indentasi, struktur class, dan kelengkapan atribut yang digunakan dalam proses election.
 
 ## Skenario 1: Start normal
 - Leader yang terpilih: node 5
@@ -22,4 +22,5 @@
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 19-10-2026 | ChatGpt | Apa penyebab error AttributeError pada kode tersebut? | AI menyarankan pemeriksaan keberadaan method monitor_leader dan struktur class Node. | kami mengecek struktur kode dan kesesuaian nama serta posisi method dengan pemanggilannya. |
+| 19-10-2026 | ChatGpt | Bagaimana caranya untuk memilih leader pada Bully Algorithm ketika salah satu node mendeteksi leader tidak aktif? | AI memberikan gambaran alur election, yaitu node menghubungi node dengan ID lebih tinggi, menunggu balasan, dan menentukan leader jika tidak ada node dengan ID lebih tinggi yang merespons. | kami menyusun pemahaman alur election sebagai acuan untuk mempelajari proses pemilihan leader pada simulasi. |
