@@ -6,6 +6,12 @@
 - Kenapa bully algoritma milih id node tertinggi : Karena pada metode ini ID digunakan sebagai prioritas, Node aktif dengan ID tertinggi dipilih jadi leader karna tidak ada node lain yang aktif dan memiliki prioritas yang lebih tinggi
 - Kelemahan : Jumlah pesan waktu election bisa banyak. Selain itu saat leader mati diperlukan beberapa saat(tidak lama) untuk mengecek kegagalan lalu baru memilih leader baru
 
+## Analisis (kenapa perlu leader, trade-off Bully vs Raft)
+
+Di kasus FoodGo leader diperlukan untuk membantu mengoordinasikan layanan pesanan dan pembayaran agar pemrosesan status pesanan teratur dan juga sesuai urutan.
+
+Bully Algorithm lebih sederhana dan mudah diterapkan, tapi hanya berfokus di pemilihan leader dan juga tidak menjamin urutan pemrosesan akan konsisten. Sedangkan, Raft dapat memilih leader dan memastikan keputusan dalam sistem disepakati oleh mayoritas node, tapi sulit diterapkan karena lebih kompleks dan membutuhkan persetujuan dari mayoritas node sebelum keputusan di sepakati. Jadi untuk kasus FoodGo cocok menggunakan Bully Algorithm untuk pemilihan leader yang mengoordinasikan layanan pesanan dan pembayaran karena lebih sederhana, kalau Raft bisa cocok juga digunakan untuk FoodGo kalau membutuhkan kesepakatan antar node agar keputusan diproses secara konsisten, tapi penerapannya lebih kompleks.
+
 ## Skenario 1: Start normal
 - Leader yang terpilih: node 5
 - Log/observasi: Kami menjalankan lima node di terminal berbeda dan setiap node saling mengirim pesan untuk pemilihan leader. Dari hasil pengujian, node 5 terpilih sebagai leader karena memiliki ID paling tinggi. Untuk node lainnya menerima pesan COORDINATOR dan mencatat kalau node 5 adalah leader saat ini. Jadi, node 5 terpilih karena konsep dari bully algorithm sendiri yaitu node aktif dengan ID tertinggi akan menjadi leader.
