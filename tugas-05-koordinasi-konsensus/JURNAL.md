@@ -3,6 +3,9 @@
 ## Implementasi Bully
 - Kendala saat mengisi TODO 1-4: Kendala yang kami alami saat mengimplementasikan Bully Algorithm adalah kesalahan indentasi dan struktur kode. Beberapa methodnya tidak berada di dalam class dengan benar(ditaruh di luar claass), sehingga program mengalami error `AttributeError` karena method `monitor_leader()` tidak dikenali. Selain itu, terdapat atribut pendukung yang belum didefinisikan dengan benar karna kami lumayan kesulitan dalam mengerjakannya. Kendala tersebut kami atasi dengan memperbaiki indentasi, struktur class, dan kelengkapan atribut yang digunakan dalam proses election.
 
+- Kenapa bully algoritma milih id node tertinggi : Karena pada metode ini ID digunakan sebagai prioritas, Node aktif dengan ID tertinggi dipilih jadi leader karna tidak ada node lain yang aktif dan memiliki prioritas yang lebih tinggi
+- Kelemahan : Jumlah pesan waktu election bisa banyak. Selain itu saat leader mati diperlukan beberapa saat(tidak lama) untuk mengecek kegagalan lalu baru memilih leader baru
+
 ## Skenario 1: Start normal
 - Leader yang terpilih: node 5
 - Log/observasi: Kami menjalankan lima node di terminal berbeda dan setiap node saling mengirim pesan untuk pemilihan leader. Dari hasil pengujian, node 5 terpilih sebagai leader karena memiliki ID paling tinggi. Untuk node lainnya menerima pesan COORDINATOR dan mencatat kalau node 5 adalah leader saat ini. Jadi, node 5 terpilih karena konsep dari bully algorithm sendiri yaitu node aktif dengan ID tertinggi akan menjadi leader.
