@@ -11,7 +11,8 @@
 
 ## Skenario 2: Leader dimatikan
 - Leader baru yang terpilih: node 4
-- Berapa lama waktu sampai leader baru terdeteksi: ...
+- Berapa lama waktu sampai leader baru terdeteksi: 
+- Log/observasi: Sebelumnya node lain bisa mengirimkan pesan PING untuk memeriksa apakah node 5 masih aktif. Setelah node 5 dimatikan, koneksi ke node gagal dan node lain mendeteksi bahwa leader tidak bisa dihubungi. Oleh karena itu, proses pemilihan leader dilakukan lagi. Node 4 yang memiliki ID tertinggi diantara node yang masih aktif kemudian mengirimkan pesan COORDINATOR kepada node lain untuk memberi tahu kalau dirnya adalah leader baru. Di terminal node 3, terlihat kalau node 4 tercatat sebagai leader baru.
 
 ![hasil pengujian setelah leader dimatikan](bukti/2.png)
 
