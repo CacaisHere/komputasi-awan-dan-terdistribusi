@@ -5,8 +5,11 @@
 - Cara memperbaikinya: -
 
 ## Skenario join/leave
-- Hasil sebelum & sesudah node baru bergabung: ![nodeBaru](bukti/nodebaru.png)
-- Hasil sebelum & sesudah node keluar: ![nodeKeluar](bukti/nodeKeluar.png)
+- Hasil sebelum & sesudah node baru bergabung: Sebelum node baru bergabung, ada empat node yaitu node-jakarta-1, node-jakarta-2, node-bnadung-1, dan node-surabaya-1. Lalu node-medan-1 ID 123 alamat 10.0.0.5 berhasil bergabung ke ring. Pada gambar terlihat bahwa lookup kurir-001 tetap menghasilkan alamat ip 192.168.1.10.
+![nodeBaru](bukti/nodebaru.png)
+
+- Hasil sebelum & sesudah node keluar: node-jakarta-1 keluar dari ring lalu setelah node dihapus program lookup kembali pada kurir-001 dan kurir-002 yang hasilnya adalah kurir-001 tetap mempunyai alamat ip 192.168.1.10 sedangkan kurir-002 tetap mempunyai alamat ip 192.168.1.11.
+![nodeKeluar](bukti/nodeKeluar.png)
 
 ## Tugas Analisis
 1. DHT/Chord lebih cocok karena IP kurir sering berubah jadi pemetaan ID kurir ke IP dapat diperbarui dengan flesibel. Berbeda dengan tabel pusat yang bergantung pada satu server, chord menyimpan data secara terdistribusi pada beberpa node.Chord juga lebih mudah untuk menyesuaikan perubahan node melalui join dan leave, jadi tanggung jawab penyimpanan data dapat dialihkan ke node lain tanpa bergantu pada satu server pusat.
