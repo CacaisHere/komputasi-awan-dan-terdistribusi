@@ -1,8 +1,8 @@
 # Jurnal Proses — Tugas 6
 
 ## Implementasi find_successor
-- Kesalahan pertama yang ditemui (mis. lupa wrap-around di ring): ...
-- Cara memperbaikinya: ...
+- Kesalahan pertama yang ditemui (mis. lupa wrap-around di ring): -
+- Cara memperbaikinya: -
 
 ## Skenario join/leave
 - Hasil sebelum & sesudah node baru bergabung: ![nodeBaru](bukti/nodebaru.png)
@@ -17,4 +17,4 @@
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 03/11/2026 | ChatGPT | Jelaskan konsep DHT dan algoritma chord dalam komputasi awan | AI menjelaskan konsep hashing, ring, node, dan successor. | penjelasana tersebut digunakan untuk memahami konsep DHT agar bisa mengimplementasikan program |
