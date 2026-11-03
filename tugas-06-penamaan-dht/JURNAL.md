@@ -5,8 +5,11 @@
 - Cara memperbaikinya: ...
 
 ## Skenario join/leave
-- Hasil sebelum & sesudah node baru bergabung: ...
-- Hasil sebelum & sesudah node keluar: ...
+- Hasil sebelum & sesudah node baru bergabung: ![nodeBaru](bukti/nodebaru.png)
+- Hasil sebelum & sesudah node keluar: ![nodeKeluar](bukti/nodeKeluar.png)
+
+## Tugas Analisis
+1. DHT/Chord lebih cocok karena IP kurir sering berubah jadi pemetaan ID kurir ke IP dapat diperbarui dengan flesibel. Berbeda dengan tabel pusat yang bergantung pada satu server, chord menyimpan data secara terdistribusi pada beberpa node.Chord juga lebih mudah untuk menyesuaikan perubahan node melalui join dan leave, jadi tanggung jawab penyimpanan data dapat dialihkan ke node lain tanpa bergantu pada satu server pusat.
 
 ## Log Penggunaan AI (Level 2)
 
