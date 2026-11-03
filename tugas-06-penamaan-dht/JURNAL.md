@@ -5,7 +5,7 @@
 - Cara memperbaikinya: -
 
 ## Skenario join/leave
-- Hasil sebelum & sesudah node baru bergabung: Sebelum node baru bergabung, ada empat node yaitu node-jakarta-1, node-jakarta-2, node-bnadung-1, dan node-surabaya-1. Lalu node-medan-1 ID 123 alamat 10.0.0.5 berhasil bergabung ke ring. Pada gambar terlihat bahwa lookup kurir-001 tetap menghasilkan alamat ip 192.168.1.10.
+- Hasil sebelum & sesudah node baru bergabung: Sebelum node baru bergabung, ada empat node yaitu node-jakarta-1, node-jakarta-2, node-bandung-1, dan node-surabaya-1. Lalu node-medan-1 ID 123 alamat 10.0.0.5 berhasil bergabung ke ring. Pada gambar terlihat bahwa lookup kurir-001 tetap menghasilkan alamat ip 192.168.1.10.
 ![nodeBaru](bukti/nodebaru.png)
 
 - Hasil sebelum & sesudah node keluar: node-jakarta-1 keluar dari ring lalu setelah node dihapus program lookup kembali pada kurir-001 dan kurir-002 yang hasilnya adalah kurir-001 tetap mempunyai alamat ip 192.168.1.10 sedangkan kurir-002 tetap mempunyai alamat ip 192.168.1.11.
@@ -16,7 +16,7 @@
 
 2. ![ring](bukti/ring.png)
 
-3. 
+3. setelah node-jakarta-1 keluar, node-bandung-1 jadi successor berikutnya karena pencarian kembali ke awal ring. Dari output, kurir-001 dan kurir-002 masih berhasil ditemukan dengan alamat ip masing-masing yang menunjukkan bahwa lookup tetap berjalan meskipun ada node yang keluar dari ring.
 
 ## Log Penggunaan AI (Level 2)
 
