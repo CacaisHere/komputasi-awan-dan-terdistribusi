@@ -14,6 +14,10 @@
 ## Tugas Analisis
 1. DHT/Chord lebih cocok karena IP kurir sering berubah jadi pemetaan ID kurir ke IP dapat diperbarui dengan flesibel. Berbeda dengan tabel pusat yang bergantung pada satu server, chord menyimpan data secara terdistribusi pada beberpa node.Chord juga lebih mudah untuk menyesuaikan perubahan node melalui join dan leave, jadi tanggung jawab penyimpanan data dapat dialihkan ke node lain tanpa bergantu pada satu server pusat.
 
+2. ![ring](bukti/ring.png)
+
+3. 
+
 ## Log Penggunaan AI (Level 2)
 
 > Wajib diisi sesuai kebijakan Level 2 di [`../RUBRIK-UMUM.md`](../RUBRIK-UMUM.md). Tulis "Tidak memakai AI" pada baris pertama jika memang tidak dipakai. Hanya untuk brainstorming ide/outline — bukan untuk kode/analisis/teks akhir.
