@@ -30,9 +30,24 @@ class ChordRing:
         node_id = hash_id(node_name)
 
         # TODO 1: tambahkan node_id -> node_ip ke self.nodes.
+        if node_id in self.nodes:
+            print(f"Node {node_name} sudah ada!")
+            return
         # TODO 2: cari successor LAMA dari node_id ini (successor sebelum node
         # baru bergabung, gunakan find_successor() dengan node_id INI dikecualikan
         # dulu dari self.nodes saat mencari).
+        old_successor = None
+
+        if self.nodes:
+            old_successor = self.find_successor(node_id)
+
+        self.nodes[node_id] = node_ip
+
+        print(
+            f"[JOIN] Node '{node_name}' "
+            f"(id={node_id}) bergabung, alamat {node_ip}"
+        )
+
         # TODO 3: pindahkan semua key di self.data yang seharusnya menjadi
         # tanggung jawab node baru (key dengan hash <= node_id, tapi masih
         # dipegang oleh successor lama) ke bawah tanggung jawab node baru.
