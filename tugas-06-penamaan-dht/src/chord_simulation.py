@@ -53,7 +53,13 @@ class ChordRing:
         # dipegang oleh successor lama) ke bawah tanggung jawab node baru.
         # (Untuk simulasi sederhana, cukup print log siapa mengambil alih apa -
         # tidak perlu benar-benar memindahkan struktur data kompleks.)
-        print(f"[TODO] Node '{node_name}' (id={node_id}) bergabung, alamat {node_ip}")
+        if old_successor is not None:
+            for key_hash, value in self.data.items():
+                if self.find_successor(key_hash) == node_id:
+                    print(
+                        f"Data {value[0]} berpindah tanggung jawab "
+                        f"dari node {old_successor} ke node {node_id}"
+                    )
 
     def leave(self, node_name: str):
         """Keluarkan sebuah node dari ring. Data yang dipegangnya harus
@@ -61,9 +67,32 @@ class ChordRing:
         node_id = hash_id(node_name)
 
         # TODO 4: hapus node_id dari self.nodes.
+        if node_id not in self.nodes:
+            print(f"Node '{node_name}' tidak ditemukan!")
+            return
+
+        # Simpan data yang sebelumnya menjadi tanggung jawab node
+        affected_data = []
+
+        for key_hash, value in self.data.items():
+            if self.find_successor(key_hash) == node_id:
+                affected_data.append((key_hash, value))
+
+        del self.nodes[node_id]
         # TODO 5: cari successor BARU untuk tiap key yang tadinya dipegang
         # node ini, pindahkan ke successor tersebut.
         print(f"[TODO] Node '{node_name}' (id={node_id}) keluar dari ring")
+        if not self.nodes:
+            print("Tidak ada node tersisa!")
+            return
+
+        for key_hash, value in affected_data:
+            new_successor = self.find_successor(key_hash)
+
+            print(
+                f"Data {value[0]} berpindah ke node "
+                f"{new_successor} ({self.nodes[new_successor]})"
+            )
 
     def find_successor(self, key_hash: int) -> int:
         """Cari node_id dengan nilai hash TERKECIL yang >= key_hash
