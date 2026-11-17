@@ -66,4 +66,4 @@ sequenceDiagram
 
 | Tanggal | Tool AI | Prompt yang diberikan | Ringkasan saran/ide AI | Bagaimana diolah jadi tulisan/kode sendiri |
 |---|---|---|---|---|
-| ... | ... | ... | ... | ... |
+| 16 November 2026 | ChatGPT | Apa saja yang harus dipertimbangkan saat menentukan model konsistensi pada sistem yang mempunyai beberapa server dengan data yang harus tetap konsisten | Memberikan ide mengenai perbedaan kebutuhan konsistensi berdasarkan jenis data dan dampaknya ke pengguna | Kami mempertimbangkan hal-hal tersebut dan mendiskusikan model konsistensi yang sesuai dengan kebutuhan sistem FoodGo |
