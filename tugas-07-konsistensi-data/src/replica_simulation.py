@@ -92,9 +92,17 @@ def main():
     print("\n=== Skenario dengan Read-Your-Writes ===")
     system.top_up(user_id, 20000)
     versi_terakhir = system.version_counter
+
     # TODO 3: panggil baca_saldo_read_your_writes dan tunjukkan hasilnya SELALU benar
     # walau dipanggil segera setelah top_up (< REPLICATION_DELAY detik).
+    saldo = system.baca_saldo_read_your_writes( user_id, "Bandung",versi_terakhir)
+    print("Baca saldo dengan Read-Your-Writes:", saldo)
+    print("-> BERHASIL: Saldo terbaru tetap terbaca.")
 
+    time.sleep(REPLICATION_DELAY + 0.5)
+    print("\n=== KONDISI AKHIR REPLIKASI ===")
+    print("Saldo Jakarta:",system.baca_saldo_naif(user_id, "Jakarta"))
+    print("Saldo Bandung:",system.baca_saldo_naif(user_id, "Bandung"))
 
 if __name__ == "__main__":
     main()
