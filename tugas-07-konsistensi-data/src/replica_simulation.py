@@ -42,8 +42,17 @@ class ReplicationSystem:
         # TODO 1: replikasi ke Bandung TERTUNDA (simulasikan dengan
         # threading.Timer(REPLICATION_DELAY, ...) yang memanggil
         # self.bandung.write(user_id, saldo_baru, version) setelah delay.
-        print(f"[TODO] Replikasi ke Bandung akan tertunda {REPLICATION_DELAY} detik")
+        timer = threading.Timer(
+            REPLICATION_DELAY,
+            self.bandung.write,
+            args=(user_id, saldo_baru, version)
+        )
+        timer.start()
 
+        print(
+            f"[INFO] Replikasi ke Bandung tertunda "
+            f"{REPLICATION_DELAY} detik"
+        )
     def baca_saldo_naif(self, user_id: str, server: str) -> float:
         """Baca saldo TANPA mekanisme Read-Your-Writes - bisa saja stale."""
         replica = self.jakarta if server == "Jakarta" else self.bandung
